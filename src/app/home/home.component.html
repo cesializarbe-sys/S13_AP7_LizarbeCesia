@@ -1,0 +1,184 @@
+<!-- =============================== HERO =============================== -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <span class="section-eyebrow">La plataforma #1 de música</span>
+      <h1 class="hero-title">
+        Tu música,<br>
+        <span class="hero-gradient">tu mundo.</span>
+      </h1>
+      <p class="hero-desc">
+        Descubre artistas emergentes, álbumes icónicos y crea la banda sonora perfecta para cada momento de tu vida.
+      </p>
+      <div class="hero-actions">
+        <a routerLink="/artistas" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          Explorar ahora
+        </a>
+        <a routerLink="/albumes" class="btn-ghost">Ver álbumes</a>
+      </div>
+
+      <!-- EQUALIZER ANIMADO -->
+      <div class="eq-wrapper">
+        <span class="eq-label">🔴 En vivo ahora</span>
+        <div class="equalizer">
+          <div class="bar" *ngFor="let h of eqBars" [style.--init-h]="h + '%'"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VINYL RECORD + NOW PLAYING -->
+    <div class="hero-visual">
+      <div class="vinyl-wrapper">
+        <div class="vinyl-spin">
+          <svg viewBox="0 0 300 300" width="100%" height="100%">
+            <defs>
+              <radialGradient id="vinyl-g" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"   stop-color="#1c1c35"/>
+                <stop offset="40%"  stop-color="#0f0f1e"/>
+                <stop offset="100%" stop-color="#070711"/>
+              </radialGradient>
+              <linearGradient id="label-g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#7c3aed"/>
+                <stop offset="100%" stop-color="#f472b6"/>
+              </linearGradient>
+            </defs>
+            <circle cx="150" cy="150" r="145" fill="url(#vinyl-g)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <circle *ngFor="let r of vinylRings" cx="150" cy="150" [attr.r]="r" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1"/>
+            <circle cx="150" cy="150" r="45" fill="url(#label-g)"/>
+            <text x="150" y="144" text-anchor="middle" font-family="Syne,sans-serif" font-weight="800" font-size="11" fill="white">SOUND</text>
+            <text x="150" y="159" text-anchor="middle" font-family="Syne,sans-serif" font-weight="800" font-size="11" fill="white">WAVE</text>
+            <circle cx="150" cy="150" r="6" fill="rgba(7,7,17,0.95)"/>
+          </svg>
+        </div>
+        <div class="needle"></div>
+        <div class="vinyl-glow"></div>
+      </div>
+
+      <!-- Now Playing Card -->
+      <div class="now-playing-card">
+        <div class="np-cover">
+          <img src="https://picsum.photos/seed/nowplay/60/60" alt="Cover" loading="lazy">
+        </div>
+        <div class="np-info">
+          <span class="np-title">Neon Nights</span>
+          <span class="np-artist">Luna Oscura</span>
+          <div class="np-progress">
+            <div class="np-bar"><div class="np-fill"></div></div>
+            <span class="np-time">2:34 / 3:48</span>
+          </div>
+        </div>
+        <button class="np-play" aria-label="Reproducir">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== STATS =============================== -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item" *ngFor="let s of stats">
+        <span class="stat-icon">{{ s.icon }}</span>
+        <strong class="stat-value">{{ s.value }}</strong>
+        <span class="stat-label">{{ s.label }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== ARTISTAS DESTACADOS =============================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="section-eyebrow">Del momento</p>
+        <h2 class="section-title">Artistas <span>destacados</span></h2>
+        <p class="section-subtitle">Los artistas más escuchados de las últimas semanas.</p>
+      </div>
+      <a routerLink="/artistas" class="see-all">Ver todos →</a>
+    </div>
+
+    <div class="cards-grid">
+      <div class="artist-card" *ngFor="let a of featuredArtists">
+        <div class="card-img-wrap">
+          <img [src]="a.img" [alt]="a.name" loading="lazy" class="card-img">
+          <div class="card-img-overlay" [style.background]="'linear-gradient(135deg,'+a.gradA+'55,'+a.gradB+'55)'"></div>
+          <button class="card-play-btn" aria-label="Reproducir">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+        </div>
+        <div class="card-body">
+          <span class="badge {{ a.badge }}">{{ a.genre }}</span>
+          <h3 class="card-title">{{ a.name }}</h3>
+          <p class="card-meta">{{ a.followers }} seguidores</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== ÚLTIMOS ÁLBUMES =============================== -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="section-eyebrow">Recién lanzados</p>
+        <h2 class="section-title">Últimos <span>álbumes</span></h2>
+        <p class="section-subtitle">Las producciones más recientes en nuestra plataforma.</p>
+      </div>
+      <a routerLink="/albumes" class="see-all">Ver todos →</a>
+    </div>
+
+    <div class="cards-grid">
+      <div class="album-card" *ngFor="let al of latestAlbums">
+        <div class="card-img-wrap">
+          <img [src]="al.img" [alt]="al.title" loading="lazy" class="card-img">
+          <div class="card-img-overlay" [style.background]="'linear-gradient(135deg,'+al.gradA+'66,'+al.gradB+'66)'"></div>
+          <button class="card-play-btn" aria-label="Reproducir">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+        </div>
+        <div class="card-body">
+          <span class="badge {{ al.badge }}">{{ al.genre }}</span>
+          <h3 class="card-title">{{ al.title }}</h3>
+          <p class="card-meta">{{ al.artist }} · {{ al.year }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== BANNER CTA =============================== -->
+<section class="cta-banner">
+  <div class="cta-orb"></div>
+  <div class="container cta-inner">
+    <div class="cta-text">
+      <h2>¿Listo para descubrir tu<br><span>próxima canción favorita?</span></h2>
+      <p>Únete a millones de oyentes y empieza a explorar sin límites hoy.</p>
+    </div>
+    <a routerLink="/contacto" class="btn-primary btn-large">Empieza gratis</a>
+  </div>
+</section>
+
+<!-- =============================== FOOTER =============================== -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-logo">
+      <span class="logo-text">Sound<span class="logo-accent">Wave</span></span>
+      <p>© 2024 SoundWave · Todos los derechos reservados.</p>
+    </div>
+    <div class="footer-links">
+      <a routerLink="/">Inicio</a>
+      <a routerLink="/artistas">Artistas</a>
+      <a routerLink="/albumes">Álbumes</a>
+      <a routerLink="/contacto">Contacto</a>
+    </div>
+  </div>
+</footer>

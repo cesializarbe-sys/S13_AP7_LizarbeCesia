@@ -1,0 +1,173 @@
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-orb"></div>
+  <div class="container">
+    <span class="section-eyebrow">Estamos para ti</span>
+    <h1 class="page-title">Habla con <span>SoundWave</span></h1>
+    <p class="page-desc">¿Tienes dudas, sugerencias o quieres unirte a nuestra comunidad? Escríbenos.</p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="container contact-grid">
+
+    <!-- INFO LATERAL -->
+    <aside class="contact-info">
+      <div class="info-card">
+        <div class="info-item">
+          <div class="info-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.55a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.89 16"/></svg>
+          </div>
+          <div>
+            <h4>Soporte 24/7</h4>
+            <p>+51 900 000 000</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <h4>Email oficial</h4>
+            <p>hola&#64;soundwave.io</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <h4>Sede principal</h4>
+            <p>Lima, Perú 🇵🇪</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-card">
+        <h4 class="social-title">Síguenos</h4>
+        <div class="social-links">
+          <a href="#" class="social-btn instagram" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
+          <a href="#" class="social-btn twitter" aria-label="Twitter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Twitter / X
+          </a>
+          <a href="#" class="social-btn spotify" aria-label="Spotify">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            Spotify
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- FORMULARIO -->
+    <div class="contact-form-wrap">
+
+      <!-- SUCCESS STATE -->
+      <div class="success-state" *ngIf="success">
+        <div class="success-icon">🎉</div>
+        <h3>¡Mensaje enviado!</h3>
+        <p>Gracias por escribirnos. Te responderemos en menos de 24 horas.</p>
+        <button class="btn-new-msg" (click)="resetForm()">Enviar otro mensaje</button>
+      </div>
+
+      <!-- FORM -->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="!success" novalidate>
+        <h2 class="form-title">Envíanos un mensaje</h2>
+
+        <!-- NOMBRE -->
+        <div class="field-group">
+          <label for="nombre">Nombre completo <span class="required">*</span></label>
+          <div class="input-wrap" [ngClass]="{ invalid: isInvalid(nombre), valid: nombre.valid && nombre.touched }">
+            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <input id="nombre" type="text" formControlName="nombre" placeholder="Tu nombre completo">
+            <span class="status-icon" *ngIf="nombre.valid && nombre.touched">✓</span>
+          </div>
+          <p class="field-error" *ngIf="isInvalid(nombre)">{{ getError(nombre) }}</p>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="field-group">
+          <label for="email">Correo electrónico <span class="required">*</span></label>
+          <div class="input-wrap" [ngClass]="{ invalid: isInvalid(email), valid: email.valid && email.touched }">
+            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <input id="email" type="email" formControlName="email" placeholder="correo@ejemplo.com">
+            <span class="status-icon" *ngIf="email.valid && email.touched">✓</span>
+          </div>
+          <p class="field-error" *ngIf="isInvalid(email)">{{ getError(email) }}</p>
+        </div>
+
+        <!-- ASUNTO -->
+        <div class="field-group">
+          <label for="asunto">Asunto <span class="required">*</span></label>
+          <div class="select-wrap" [ngClass]="{ invalid: isInvalid(asunto), valid: asunto.valid && asunto.touched }">
+            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            <select id="asunto" formControlName="asunto">
+              <option value="">Selecciona un asunto...</option>
+              <option value="Soporte técnico">Soporte técnico</option>
+              <option value="Cuenta y suscripción">Cuenta y suscripción</option>
+              <option value="Reportar problema">Reportar un problema</option>
+              <option value="Propuesta artística">Propuesta artística</option>
+              <option value="Colaboración comercial">Colaboración comercial</option>
+              <option value="Otro">Otro</option>
+            </select>
+            <svg class="select-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <p class="field-error" *ngIf="isInvalid(asunto)">{{ getError(asunto) }}</p>
+        </div>
+
+        <!-- MENSAJE -->
+        <div class="field-group">
+          <label for="mensaje">Mensaje <span class="required">*</span></label>
+          <div class="textarea-wrap" [ngClass]="{ invalid: isInvalid(mensaje), valid: mensaje.valid && mensaje.touched }">
+            <textarea
+              id="mensaje"
+              formControlName="mensaje"
+              rows="5"
+              placeholder="Cuéntanos todo... (mínimo 20 caracteres)"></textarea>
+          </div>
+          <div class="field-footer">
+            <p class="field-error" *ngIf="isInvalid(mensaje)">{{ getError(mensaje) }}</p>
+            <span class="char-count" [ngClass]="{ warning: mensajeChars > 450, error: mensajeChars > 500 }">
+              {{ mensajeChars }}/500
+            </span>
+          </div>
+        </div>
+
+        <!-- TÉRMINOS -->
+        <div class="checkbox-group" [ngClass]="{ 'checkbox-error': isInvalid(terminos) }">
+          <label class="checkbox-label">
+            <input type="checkbox" formControlName="terminos">
+            <span class="checkbox-custom"></span>
+            <span class="checkbox-text">
+              Acepto los <a href="#">términos y condiciones</a> y la
+              <a href="#">política de privacidad</a> de SoundWave. <span class="required">*</span>
+            </span>
+          </label>
+          <p class="field-error" *ngIf="isInvalid(terminos)">Debes aceptar los términos para continuar.</p>
+        </div>
+
+        <!-- SUBMIT -->
+        <button type="submit" class="btn-submit" [disabled]="loading">
+          <span *ngIf="!loading">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Enviar mensaje
+          </span>
+          <span *ngIf="loading" class="loading-dots">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+
+        <!-- FORM ERROR SUMMARY -->
+        <div class="form-alert" *ngIf="submitted && form.invalid">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Por favor corrige los campos marcados antes de enviar.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

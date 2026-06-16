@@ -1,0 +1,58 @@
+<nav class="navbar" [class.scrolled]="scrolled">
+  <div class="container nav-inner">
+
+    <!-- LOGO -->
+    <a routerLink="/" class="logo" (click)="closeMenu()">
+      <div class="logo-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect width="28" height="28" rx="8" fill="url(#logo-grad)"/>
+          <rect x="7" y="17" width="3" height="7" rx="1.5" fill="white"/>
+          <rect x="12.5" y="11" width="3" height="13" rx="1.5" fill="white"/>
+          <rect x="18" y="14" width="3" height="10" rx="1.5" fill="white"/>
+          <defs>
+            <linearGradient id="logo-grad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#7c3aed"/>
+              <stop offset="1" stop-color="#f472b6"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span class="logo-text">Sound<span class="logo-accent">Wave</span></span>
+    </a>
+
+    <!-- LINKS DESKTOP -->
+    <ul class="nav-links">
+      <li>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">Inicio</a>
+      </li>
+      <li>
+        <a routerLink="/artistas" routerLinkActive="active" (click)="closeMenu()">Artistas</a>
+      </li>
+      <li>
+        <a routerLink="/albumes" routerLinkActive="active" (click)="closeMenu()">Álbumes</a>
+      </li>
+      <li>
+        <a routerLink="/contacto" routerLinkActive="active" (click)="closeMenu()">Contacto</a>
+      </li>
+    </ul>
+
+    <!-- CTA DESKTOP -->
+    <a routerLink="/contacto" class="btn-cta">Únete gratis</a>
+
+    <!-- HAMBURGER -->
+    <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" [class.open]="menuOpen">
+    <ul>
+      <li><a routerLink="/"         routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">Inicio</a></li>
+      <li><a routerLink="/artistas" routerLinkActive="active" (click)="closeMenu()">Artistas</a></li>
+      <li><a routerLink="/albumes"  routerLinkActive="active" (click)="closeMenu()">Álbumes</a></li>
+      <li><a routerLink="/contacto" routerLinkActive="active" (click)="closeMenu()">Contacto</a></li>
+    </ul>
+    <a routerLink="/contacto" class="btn-cta mobile-cta" (click)="closeMenu()">Únete gratis</a>
+  </div>
+</nav>

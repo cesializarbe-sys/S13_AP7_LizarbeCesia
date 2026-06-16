@@ -1,0 +1,75 @@
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-orb"></div>
+  <div class="container">
+    <span class="section-eyebrow">Música sin límites</span>
+    <h1 class="page-title">Nuestros <span>Artistas</span></h1>
+    <p class="page-desc">Explora el universo de talentos que hacen vibrar nuestra plataforma cada día.</p>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<section class="filters-section">
+  <div class="container">
+    <div class="filters-bar">
+      <span class="filters-label">Filtrar por:</span>
+      <div class="filters-chips">
+        <button
+          *ngFor="let f of filters"
+          class="chip"
+          [ngClass]="{ active: activeFilter === f }"
+          (click)="setFilter(f)">
+          {{ f }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTISTS GRID -->
+<section class="artists-section">
+  <div class="container">
+    <p class="results-count">{{ artists.length }} artista{{ artists.length !== 1 ? 's' : '' }} encontrado{{ artists.length !== 1 ? 's' : '' }}</p>
+    <div class="artists-grid" *ngIf="artists.length > 0; else noResults">
+      <div class="artist-card" *ngFor="let a of artists">
+        <div class="artist-img-wrap">
+          <img [src]="a.img" [alt]="a.name" loading="lazy" class="artist-img">
+          <div class="artist-img-overlay" [style.background]="'linear-gradient(180deg, transparent 40%, rgba(7,7,17,0.95) 100%)'"></div>
+          <div class="artist-country">{{ a.country }}</div>
+          <div class="artist-verified" *ngIf="a.verified" title="Artista verificado">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Verificado
+          </div>
+        </div>
+        <div class="artist-body">
+          <div class="artist-top">
+            <span class="badge {{ a.badge }}">{{ a.genre }}</span>
+          </div>
+          <h3 class="artist-name">{{ a.name }}</h3>
+          <div class="artist-stats">
+            <div class="astat">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span>{{ a.followers }}</span>
+            </div>
+            <div class="astat">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              <span>{{ a.songs }} canciones</span>
+            </div>
+            <div class="astat">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              <span>{{ a.albums }} álbumes</span>
+            </div>
+          </div>
+          <button class="btn-follow">Seguir artista</button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noResults>
+      <div class="no-results">
+        <span class="no-results-icon">🎵</span>
+        <p>No hay artistas en esta categoría todavía.</p>
+      </div>
+    </ng-template>
+  </div>
+</section>

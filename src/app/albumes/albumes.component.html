@@ -1,0 +1,98 @@
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-orb"></div>
+  <div class="container">
+    <span class="section-eyebrow">Colecciones completas</span>
+    <h1 class="page-title"><span>Álbumes</span> del momento</h1>
+    <p class="page-desc">Desde debuts icónicos hasta los lanzamientos más esperados del año.</p>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<section class="filters-section">
+  <div class="container">
+    <div class="filters-bar">
+      <span class="filters-label">Género:</span>
+      <div class="filters-chips">
+        <button
+          *ngFor="let f of filters"
+          class="chip"
+          [ngClass]="{ active: activeFilter === f }"
+          (click)="setFilter(f)">
+          {{ f }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALBUMS GRID -->
+<section class="albums-section">
+  <div class="container">
+    <p class="results-count">{{ albums.length }} álbum{{ albums.length !== 1 ? 'es' : '' }} encontrado{{ albums.length !== 1 ? 's' : '' }}</p>
+
+    <div class="albums-grid" *ngIf="albums.length > 0; else noResults">
+      <div class="album-card" *ngFor="let al of albums">
+
+        <!-- COVER -->
+        <div class="album-cover-wrap">
+          <img [src]="al.img" [alt]="al.title" loading="lazy" class="album-cover">
+          <div class="album-cover-overlay" [style.background]="'linear-gradient(180deg,transparent 30%,rgba(7,7,17,0.98) 100%)'"></div>
+
+          <div class="album-badges">
+            <span class="badge {{ al.badge }}">{{ al.genre }}</span>
+            <span class="badge-trending" *ngIf="al.trending">🔥 Trending</span>
+          </div>
+
+          <button class="album-play-btn" aria-label="Reproducir álbum">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+        </div>
+
+        <!-- INFO -->
+        <div class="album-body">
+          <h3 class="album-title">{{ al.title }}</h3>
+          <p class="album-artist">{{ al.artist }}</p>
+
+          <div class="album-rating">
+            <div class="stars">
+              <ng-container *ngFor="let star of getStars(al.rating)">
+                <span class="star" [ngClass]="star">
+                  <svg width="12" height="12" viewBox="0 0 24 24">
+                    <polygon *ngIf="star==='full'" fill="#f59e0b" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    <polygon *ngIf="star!=='full'" fill="rgba(255,255,255,0.15)" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                </span>
+              </ng-container>
+            </div>
+            <span class="rating-val">{{ al.rating }}</span>
+          </div>
+
+          <div class="album-meta-row">
+            <div class="ameta">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              {{ al.tracks }} pistas
+            </div>
+            <div class="ameta">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              {{ al.duration }}
+            </div>
+            <div class="ameta">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              {{ al.year }}
+            </div>
+          </div>
+
+          <button class="btn-listen">Escuchar ahora</button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noResults>
+      <div class="no-results">
+        <span>💿</span>
+        <p>No hay álbumes en esta categoría todavía.</p>
+      </div>
+    </ng-template>
+  </div>
+</section>
